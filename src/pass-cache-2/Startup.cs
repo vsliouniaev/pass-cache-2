@@ -23,6 +23,7 @@ namespace pass_cache_2
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddCaching();
             services.AddMvc();
         }
 

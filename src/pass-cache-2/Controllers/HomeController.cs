@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace pass_cache_2.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IMemoryCache _memoryCache;
+
+        public HomeController(IMemoryCache memoryCache)
+        {
+            _memoryCache = memoryCache;
+        }
+
         public IActionResult Index()
         {
             return View();
