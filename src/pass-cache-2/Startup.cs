@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,10 +40,10 @@ namespace pass_cache_2
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseMiddleware<Middleware.EnforceHttps>();
             }
 
             app.UseIISPlatformHandler();
-
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
