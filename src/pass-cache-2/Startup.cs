@@ -40,8 +40,9 @@ namespace pass_cache_2
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseMiddleware<Middleware.FilterLinkProbes>();
                 app.UseMiddleware<Middleware.EnforceHttps>();
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseIISPlatformHandler();
