@@ -1,5 +1,9 @@
 ﻿@model string[]
 
+<script>
+    var afterFormSubmit = function() { /* suppress error */}
+</script>
+
 @section Scripts{
     <script>
         var url = '@Url.Action("Get", null, null, Context.Request.Scheme)';
