@@ -46,6 +46,13 @@ iframe {
     text-align: right;
 }
 
+.git small {
+    position: relative;
+    top: 12px;
+    left: -10px;
+    color: grey;
+}
+
 textarea {
     resize: vertical;
 }
