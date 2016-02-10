@@ -33,6 +33,8 @@ namespace pass_cache_2
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseMiddleware<Middleware.FilterLinkProbes>();
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -40,7 +42,6 @@ namespace pass_cache_2
             }
             else
             {
-                app.UseMiddleware<Middleware.FilterLinkProbes>();
                 app.UseMiddleware<Middleware.EnforceHttps>();
             }
 
@@ -51,7 +52,8 @@ namespace pass_cache_2
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{action=set}",
+                    defaults: new {controller = "Home"});
             });
         }
 
