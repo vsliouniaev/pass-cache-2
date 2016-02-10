@@ -71,8 +71,21 @@ function afterFormSubmit() {
         document.title = "passcache";
         document.getElementById('result').removeAttribute("hidden");
         document.getElementById('accessUrl').innerHTML = fullUrl;
-        document.getElementById('copy-button').setAttribute('data-clipboard-text', fullUrl);
         document.getElementById('inputs').innerHTML = "";
     }
     showCreds = false;
 };
+
+function copyToClipboard() {
+
+    var aux = document.createElement("input");
+    aux.setAttribute("value", document.getElementById('accessUrl').innerHTML);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+
+    var button = document.getElementById('copy-button');
+    button.setAttribute('disabled', 'disabled');
+    button.innerHTML = 'Copied to clipboard';
+}
