@@ -52,7 +52,7 @@ namespace pass_cache_2
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{action=set}",
+                    template: "{action=Set}",
                     defaults: new {controller = "Home"});
             });
         }
