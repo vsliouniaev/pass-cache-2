@@ -40,12 +40,17 @@ namespace pass_cache_2
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
-            else
+
+            
+            app.UseIISPlatformHandler();
+
+            if (!env.IsDevelopment())
             {
+                // This has to come after UseIISPlatformHandler(), otherwise
+                // the request context will always think it's HTTP
                 app.UseMiddleware<Middleware.EnforceHttps>();
             }
 
-            app.UseIISPlatformHandler();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
