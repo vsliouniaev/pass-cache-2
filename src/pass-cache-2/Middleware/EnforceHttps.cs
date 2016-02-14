@@ -16,14 +16,15 @@ namespace pass_cache_2.Middleware
             _next = next;
         }
 
-        public Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context)
         {
             if (!context.Request.IsHttps)
             {
-                context.Response.Redirect($"https://{context.Request.Host}{context.Request.Path}{context.Request.QueryString}", false);
+                context.Response.Redirect($"https://{context.Request.Host}{context.Request.Path}{context.Request.QueryString}", true);
+                return;
             }
 
-            return _next(context);
+            await _next(context);
         }
     }
 }

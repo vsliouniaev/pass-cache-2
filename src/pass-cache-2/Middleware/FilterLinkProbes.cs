@@ -19,7 +19,7 @@ namespace pass_cache_2.Middleware
             _next = next;
         }
 
-        public Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context)
         {
             StringValues userAgents;
             if (context.Request.Headers.TryGetValue("User-Agent", out userAgents))
@@ -27,10 +27,11 @@ namespace pass_cache_2.Middleware
                 if (userAgents.Select(a => a.ToLowerInvariant()).Any(userAgent => BlockedAgents.Any(blockedAgent => blockedAgent.Contains(userAgent))))
                 {
                     context.Response.Redirect("/", true);
+                    return;
                 }
             }
 
-            return _next(context);
+            await _next(context);
         }
     }
 }
